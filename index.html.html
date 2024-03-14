@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    *{
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+  /* Styling for the overall page */
+  body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f76c6c, #ff9023);
+    font-family: Arial, sans-serif;
+  }
+
+  /* Styling for the calculator container */
+  .calculator {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Styling for the display area */
+  .display {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    border: none;
+    padding: 6px;
+    font-size: 24px;
+    text-align: right; /* Center the text */
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for the grid of buttons */
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  /* Styling for the calculator buttons */
+  .button {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* Hover effect for buttons */
+  .button:hover {
+    background-color: #ddd;
+  }
+
+  /* Styling for the equals button */
+  .equal-button {
+    grid-column: span 2;
+    background-color: #4caf50;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+   
+  <!-- Calculator container -->
+  <div class="calculator">
+    <!-- Display area -->
+    <input type="text" class="display" id="display" disabled placeholder="0">
+    <!-- Grid of calculator buttons -->
+    <div class="buttons">
+      <button class="button" onclick="appendToDisplay('7')">7</button>
+      <button class="button" onclick="appendToDisplay('8')">8</button>
+      <button class="button" onclick="appendToDisplay('9')">9</button>
+      <button class="button" onclick="appendToDisplay('+')">+</button>
+      <button class="button" onclick="appendToDisplay('4')">4</button>
+      <button class="button" onclick="appendToDisplay('5')">5</button>
+      <button class="button" onclick="appendToDisplay('6')">6</button>
+      <button class="button" onclick="appendToDisplay('-')">-</button>
+      <button class="button" onclick="appendToDisplay('1')">1</button>
+      <button class="button" onclick="appendToDisplay('2')">2</button>
+      <button class="button" onclick="appendToDisplay('3')">3</button>
+      <button class="button" onclick="appendToDisplay('')"></button>
+      <button class="button" onclick="appendToDisplay('0')">0</button>  
+      <button class="button" onclick="appendToDisplay('/')">/</button>
+      <button class="button" onclick="appendToDisplay('.')">.</button>
+      <button class="button" onclick="clearDisplay()">C</button>
+      <button class="button" onclick="appendToDisplay('(')">(</button>
+      <button class="button" onclick="appendToDisplay(')')">)</button>
+      <button class="button equal-button" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to append values to the display
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    // Function to calculate the result
+    function calculate() {
+      let displayValue = document.getElementById('display').value;
+      try {
+        document.getElementById('display').value = eval(displayValue);
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+  </script>
+</body>
+</html>
